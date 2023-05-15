@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class ProductTag extends Model {}
+class PostTag extends Model {}
 
-ProductTag.init(
+PostTag.init(
   {
     // define columns
     id: {
@@ -16,7 +16,7 @@ ProductTag.init(
     product_id: {
     type: DataTypes.INTEGER,
     references: {
-      model: "product",
+      model: "post",
       key: "id",
     },
   },
@@ -34,8 +34,8 @@ ProductTag.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product_tag',
+    modelName: 'post_tag',
   }
 );
 
-module.exports = ProductTag;
+module.exports = PostTag;
