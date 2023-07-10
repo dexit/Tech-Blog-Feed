@@ -17,17 +17,17 @@ Post.belongsTo(User, {
 // Categories have many Products
 Category.hasMany(Post)
 // User have many Products
-User.hasMany(POst)
+User.hasMany(Post)
 // Products belongToMany Tags (through ProductTag)
 Post.belongsToMany(Tag, {
   through: PostTag,
   foreignKey: "post_id",
 })
 // Tags belongToMany Products (through ProductTag)
-Tag.belongsToMany(Product, {
-  through: ProductTag, 
-  foreignKey: "tag_id",
-})
+//Tag.belongsToMany(Post, {
+ // through: ProductTag, 
+ /// foreignKey: "tag_id",
+//})
 
 
 module.exports = {
