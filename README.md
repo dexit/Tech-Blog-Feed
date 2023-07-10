@@ -12,10 +12,16 @@ https://github.com/dexit/Tech-Blog-Feed/assets/6205151/c37a9915-ee7e-430d-bd97-5
 ## Description
 Tech blog website that uses a MySql database.
 
+## Links
+Github repo link : ``` https://github.com/dexit/Tech-Blog-Feed ```
+ 
+Live Heroku : ``` https://tech-blog14-2023.herokuapp.com/ ```
+
 ## Table of Contents
 - [Tech Blog Feed](#tech-blog-feed)
   - [Video Walkthrough](#vide-walkthrough)
   - [Description](#description)
+  - [Links](#links)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
