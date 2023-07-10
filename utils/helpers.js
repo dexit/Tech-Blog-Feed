@@ -4,7 +4,7 @@ module.exports = {
     },
     excerpt: (text, blodid) => {
         if (text.length > 100) {
-            text = text.substring(0,100) + `... <a href="/homepage/${blodid}">read more</a>`;
+            text = text.substring(0,100) + `... <a class="text-body-tertiary nav-item" href="/homepage/${blodid}">read more</a>`;
         }
        return text;
     }

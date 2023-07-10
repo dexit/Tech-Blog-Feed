@@ -1,9 +1,9 @@
  {{#each blogs as |blog|}}
-    <div class=" col-6 p-2 w-50">
+    <div class=" col-6 p-2 w-50 bg-body-tertiary text-body-tertiary">
       <div class="container blogid" data-blogid="{{blog.id}}">
-        <div class="row d-flex  justify-content-center">
+        <div class="row d-flex  justify-content-center  text-body-tertiary">
           <div class="card " >
-            <div class="card-body supaz">
+            <div class="card-body supaz  text-body-tertiary">
               <div>
                 <div>
                   <p class="text-muted  text-left small mb-0">
@@ -15,7 +15,7 @@
                 {{{excerpt blog.content blog.id}}}
               </p>
               <hr class="hr" />
-              <a class="navigationTags" href="/homepage/{{blog.id}}"><h5 class="text-left">{{blog.title}}</h5></a>
+              <a class="navigationTags text-muted text-left " href="/homepage/{{blog.id}}"><h5 class="text-left">{{blog.title}}</h5></a>
             </div>
           </div>
         </div>
