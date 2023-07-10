@@ -1,34 +1,58 @@
 # Tech Blog Feed
+![ezgif-1-fcb77f1635](https://github.com/dexit/Tech-Blog-Feed/assets/6205151/0a0ebeda-c67a-4439-9034-ccde63aced8f)
+
   [![License: GPL](https://img.shields.io/badge/License-GPL-green.svg)](https://opensource.org/licenses/GPL)
+## Video Walkthrough
+
+
+https://github.com/dexit/Tech-Blog-Feed/assets/6205151/c37a9915-ee7e-430d-bd97-5aeb006d0f6a
+
+
 
 ## Description
 Tech blog website that uses a MySql database.
 
 ## Table of Contents
 - [Tech Blog Feed](#tech-blog-feed)
+  - [Video Walkthrough](#vide-walkthrough)
   - [Description](#description)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [API Routes](#api-routes)
-  - [Walkthrough](#walkthrough)
   - [Licence](#licence)
   - [Questions](#questions)
 
 
 ## Installation
 
-TBA
+You can clone the git repository and run next command to use tha web application locally
 
+Install all dependencies
+
+```
+  npm install
+```
+
+Seed the database
+
+```
+  npm run seed
+```
+
+Start the server
+
+```
+  npm run start
+```
+#
 ## Usage
-Install & run the server as described in the [Installation](#installation) section.
+In order to use the program you will need to clone the repository from GitHub provided in the link below.
 
+#
+## How to Contribute
+For and suggestions or contributions you can reach me at my email address or you can clone to code and edit, it the way it will suite you the best.
+#
 
-## API Routes
-TBA
-
-## Walkthrough
-TBA
 
 ## Licence
   [![License: GPL](https://img.shields.io/badge/License-GPL-green.svg)](https://opensource.org/licenses/GPL)
