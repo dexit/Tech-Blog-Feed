@@ -1,16 +1,17 @@
-const logout = async () => {
-  // Make a POST request to destroy the session on the back end
-  const response = await fetch('/logout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-  });
+const logoutHandler = async (event) => {
+  event.preventDefault();
+      const response = await fetch('/api/user/logout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+                  });
+                  if (response.ok) {
+                      document.location.replace('/homepage');
+                  } else {
+                      alert(response.statusText);
+                  }
 
-  if (response.ok) {
-    // If successfully logged out, redirect to the login page
-    document.location.replace('/login');
-  } else {
-    alert(response.statusText);
-  }
-};
+}
 
-document.querySelector('#logout').addEventListener('click', logout);
+const elementLogout = document.querySelector('#logout')
+if (elementLogout){
+elementLogout.addEventListener('click', logoutHandler)}
