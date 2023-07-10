@@ -15,5 +15,34 @@ router.post("/", withAuth, async (req, res) => {
       console.log(error);
     }
   });
-  
+  router.get("/", async (req, res) => {
+    try {
+      const comments = await Comment.findAll({
+        include: [
+          {
+            model: Blog,
+          },
+          {
+            model: User,
+          },
+        ],
+      });
+      res.status(200).json(comments);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+  });
+  router.get("/:id", async (req, res) => {
+    try {
+      const comments = await Comment.findAll({
+        where: {
+          id: req.params.id,
+        },
+      });
+      res.status(200).json(comments);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
   module.exports = router;
