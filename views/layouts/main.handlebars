@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark"><head>
+<html lang="en" data-bs-theme="light"><head>
 {{> colormode }}
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -32,13 +32,20 @@
     flex-direction: row!important;
     align-items: stretch!important;
 }
-
+body.d-flex {
+    display: flex!important;
+    align-content: stretch!important;
+    flex-wrap: nowrap!important;
+    flex-direction: column!important;
+    align-items: stretch!important;
+    justify-content: center!important;
+}
 section.group-blogs.container.d-flex.flex-row.flex-wrap.flex-inline {
     min-height: 500px;
 }
     </style>
 </head>
-<body class="back-color" data-bs-theme="light">
+<body class="back-color bg-white bg-light d-flex" data-bs-theme="light">
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
