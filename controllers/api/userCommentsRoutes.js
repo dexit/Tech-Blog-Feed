@@ -4,12 +4,12 @@ const withAuth = require("../../utils/withAuth");
 router.post("/", withAuth, async (req, res) => {
     try {
       console.log(req.body);
-      const newComment = await Comment.create({
+      const commentoCreate = await Comment.create({
         ...req.body,
         user_id: req.session.user_id,
         
       });
-      res.status(200).json(newComment);
+      res.status(200).json(commentoCreate);
     } catch (error) {
       res.status(400).json(error);
       console.log(error);
@@ -17,7 +17,7 @@ router.post("/", withAuth, async (req, res) => {
   });
   router.get("/", async (req, res) => {
     try {
-      const comments = await Comment.findAll({
+      const commento = await Comment.findAll({
         include: [
           {
             model: Blog,
@@ -27,7 +27,7 @@ router.post("/", withAuth, async (req, res) => {
           },
         ],
       });
-      res.status(200).json(comments);
+      res.status(200).json(commento);
     } catch (err) {
       console.error(err);
       res.status(500).json(err);
@@ -35,12 +35,12 @@ router.post("/", withAuth, async (req, res) => {
   });
   router.get("/:id", async (req, res) => {
     try {
-      const comments = await Comment.findAll({
+      const commento = await Comment.findAll({
         where: {
           id: req.params.id,
         },
       });
-      res.status(200).json(comments);
+      res.status(200).json(commento);
     } catch (err) {
       res.status(500).json(err);
     }

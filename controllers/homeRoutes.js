@@ -6,7 +6,7 @@ const util = require('util');
 
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    const blogData = await Blog.findAll({
+    const blogo = await Blog.findAll({
       where: {
         user_id: req.session.user_id,
       },
@@ -21,7 +21,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
         },
       ],
     });
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    const blogs = blogo.map((blog) => blog.get({ plain: true }));
     res.render("dashboard", {
       user: req.session.user,
       blogs,
@@ -34,7 +34,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 });
 router.get("/homepage", async (req, res) => {
   if (req.session.logged_in) {
-    const blogData = await Blog.findAll({
+    const blogo = await Blog.findAll({
       order: [["date", "DESC"]],
       include: [
         {
@@ -47,14 +47,14 @@ router.get("/homepage", async (req, res) => {
         },
       ],
     });
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    const blogs = blogo.map((blog) => blog.get({ plain: true }));
     res.render("homepage", {
       user: req.session.user,
       blogs,
       logged_in: req.session.logged_in,
     });
   } else {
-    const blogData = await Blog.findAll({
+    const blogo = await Blog.findAll({
       include: [
         {
           model: User,
@@ -62,9 +62,9 @@ router.get("/homepage", async (req, res) => {
         },
       ],
     });
-    const commentData = await Comment.findAll();
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
-    const comments = commentData.map((comment) => comment.get({ plain: true }));
+    const commento = await Comment.findAll();
+    const blogs = blogo.map((blog) => blog.get({ plain: true }));
+    const comments = commento.map((comment) => comment.get({ plain: true }));
     res.render("homepage", {
       blogs,
       comments,
@@ -74,14 +74,14 @@ router.get("/homepage", async (req, res) => {
 router.get("/homepage/:id", async (req, res) => {
   
   try {
-    const blogData = await Blog.findOne({
+    const blogo = await Blog.findOne({
       where: {
         id: req.params.id,
       },
       include: [User, { model: Comment, include: [User] }],
     });
 
-    const blogs = blogData.get({ plain: true });
+    const blogs = blogo.get({ plain: true });
     console.log(util.inspect(blogs, {showHidden: false, depth: 10, colors: true}));
     res.render("singleBlog", {
       user: req.session.user,
