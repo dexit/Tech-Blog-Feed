@@ -1,8 +1,11 @@
-<section class="group-blogs p-5 m-5">
+<section  class="group-blogs container d-flex flex-row flex-wrap flex-inline"> 
+  <div class="row col-12 d-flex flex-row flex-inline m-0 p-5 w-100">
   {{#unless blogs }}
-  <h4 class="text-center h1 fw-bold mb-2 mx-1 mx-md-4 mt-1" style="color: white;" >Your blogs will show here</h4>
+  <h4 class="text-center h1 fw-bold mb-2 mx-1 mx-md-4 mt-1"  >This is your dashboard !</h4>
+  <h5 class="text-center h5 fw-bold mb-2 mx-1 mx-md-4 mt-1"  >Add a new blog post here <a href="/newblog">here</a></h5>
   {{else}}
   {{> blog}}
   {{/unless}}
+  </div>
 </section>
 
