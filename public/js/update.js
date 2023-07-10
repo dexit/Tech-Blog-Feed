@@ -18,6 +18,7 @@ const updateHandler = async (event) => {
     currentBody.replaceWith(contentUpdate)
     updateButton.replaceWith(saveButton)
     saveButton.id = "save"
+    saveButton.setAttribute("class", "text-light btn btn-primary btn-sm")
     saveButton.textContent = "Save"
     const saveHandler = async (event) => {
         event.preventDefault();
@@ -42,3 +43,6 @@ const updateHandler = async (event) => {
 }
 
 document.getElementById('updateBtn').addEventListener('click', updateHandler)
+
+
+
