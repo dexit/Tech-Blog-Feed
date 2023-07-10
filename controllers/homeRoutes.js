@@ -3,36 +3,111 @@ const { User, Blog, Comment } = require("../models");
 const withAuth = require("../utils/withAuth");
 const util = require('util');
 
-router.get("/", withAuth, async (req, res) => {
+
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    const productData = await Product.findAll({
+    const blogData = await Blog.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      order: [["date", "DESC"]],
       include: [
         {
           model: User,
-          attributes: ["email"],
+          attributes: ["email", "first_name", "last_name"],
+        },
+        {
+          model: Comment,
         },
       ],
     });
-    const products = productData.map(product => product.get({ plain: true }));
-    const thinkabitmorUSERname = await User.findByPk(req.session.user_id);
-
-
-
-
-
-    res.render("homepage", {
-     le_idiot:  req.session.user_id,
-     named : thinkabitmorUSERname.first_name,
-     lasted : thinkabitmorUSERname.last_name,
-     mailed: thinkabitmorUSERname.email,
-      products,
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    res.render("dashboard", {
+      user: req.session.user,
+      blogs,
       logged_in: req.session.logged_in,
     });
+    console.log(req.body);
   } catch (error) {
     res.status(500).json(error);
   }
 });
+router.get("/homepage", async (req, res) => {
+  if (req.session.logged_in) {
+    const blogData = await Blog.findAll({
+      order: [["date", "DESC"]],
+      include: [
+        {
+          model: User,
+          
+        },
+        {
+          model: Comment,
+        
+        },
+      ],
+    });
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    res.render("homepage", {
+      user: req.session.user,
+      blogs,
+      logged_in: req.session.logged_in,
+    });
+  } else {
+    const blogData = await Blog.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["first_name", "last_name"],
+        },
+      ],
+    });
+    const commentData = await Comment.findAll();
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
+    res.render("homepage", {
+      blogs,
+      comments,
+    });
+  }
+});
+router.get("/homepage/:id", async (req, res) => {
+  
+  try {
+    const blogData = await Blog.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [User, { model: Comment, include: [User] }],
+    });
 
+    const blogs = blogData.get({ plain: true });
+    console.log(util.inspect(blogs, {showHidden: false, depth: 10, colors: true}));
+    res.render("singleBlog", {
+      user: req.session.user,
+      blogs,
+      logged_in: req.session.logged_in,
+      is_creator: blogs.user.id === req.session.user_id
+    });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+
+});
+router.get("/newblog", async (req, res) => {
+  if (req.session.logged_in) {
+    res.render("newblog", {
+      user: req.session.user,
+      logged_in: req.session.logged_in,
+    });
+    return;
+  }
+  res.render("login");
+});
+router.get("*", async (req, res) => {
+  
+  res.redirect("/homepage");
+});
 router.get("/login", async (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/dashboard");
@@ -54,43 +129,13 @@ router.get("/logout", async (req, res) => {
 
 router.get("/signup", async (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect("/dashboard");
     return;
   }
-  res.render("signUp");
+  res.render("register");
 });
 
-router.get("/home", async (req, res) => {
-  if (!req.session.logged_in) {
-    res.redirect("/debil");
-    return;
-  }
-  res.render("homepage", {
-   // products,
-    logged_in: req.session.logged_in,
-  });
-});
 
-router.get("/checkout", async (req, res) => {
-  if (!req.session.logged_in) {
-    res.redirect("/");
-    return;
-  }
-  res.render("checkout", {
-   // products,
-    logged_in: req.session.logged_in,
-  });
-});
-router.get("/cart", async (req, res) => {
-  if (!req.session.logged_in) {
-    res.redirect("/");
-    return;
-  }
-  res.render("cart", {
-  //  products,
-    logged_in: req.session.logged_in,
 
-  });
-});
 
 module.exports = router;
